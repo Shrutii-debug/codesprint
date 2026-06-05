@@ -1,0 +1,82 @@
+/*Problem Statement
+Sanchita is sorting a list of encrypted server IDs. However, swapping two elements is extremely expensive in her system, so she wants a sorting method that uses as few swaps as possible.
+
+Your task is to sort the array using the selection process and determine the total number of swaps performed during sorting.
+
+In each step, select the minimum element from the unsorted portion of the array and place it in its correct position.
+
+A swap is counted only when two different positions exchange their values. If an element is already in its correct position, no swap is counted.
+
+Print the sorted array and the total number of swaps performed.
+
+Input Format
+First line contains integer N
+Second line contains N integers
+Output Format
+Print the sorted array on the first line.
+Print the total number of swaps performed on the second line.
+Example
+Input
+5
+
+64 25 12 22 11
+
+Output
+11 12 22 25 64
+
+3
+
+Explanation:
+
+1. In each iteration, the minimum element from the unsorted portion is placed in its correct position.
+
+2. For this array, 3 swaps are required to obtain the sorted order.
+
+Constraints
+1 ≤ N ≤ 100
+0 ≤ arr[i] ≤ 10^9
+
+Hints (3)
+ */
+
+import java.util.*;
+
+public class selectionSort{
+  public static void main(String[] args){
+    Scanner sc = new Scanner(System.in);
+    System.out.println("enter the no of integers");
+    int n = sc.nextInt();
+
+    System.out.println("enter the elements");
+    int[] arr = new int[n];
+
+    for(int i = 0; i < n; i++){
+      arr[i] = sc.nextInt();
+    }
+
+    int swaps = 0;
+
+    for(int i = 0; i < n-1; i++){
+      int minIndex = i;
+
+      for(int j = i + 1; j < n; j++){
+        if(arr[j] < arr[minIndex]){
+          minIndex = j;
+        }
+      }
+      if(minIndex != i){
+        int temp = arr[i];
+        arr[i] = arr[minIndex];
+        arr[minIndex] = temp;
+        swaps++;
+      }
+    }
+    System.out.println("the numbers are: ");
+    for(int x : arr){
+      System.out.print(x + " ");
+    }
+    System.out.println();
+    System.out.println("the swaps are: ");
+    System.out.println(swaps);
+  }
+}
