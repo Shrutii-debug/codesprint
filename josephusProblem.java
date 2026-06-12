@@ -39,3 +39,93 @@ Participant IDs are distinct and fit within a 32-bit signed integer.
 
 Hints (3) */
 
+import java.util.*;
+
+public class josephusProblem{
+  public static void main(String[] args){
+    Scanner sc = new Scanner(System.in);
+
+    int n = sc.nextInt();
+
+    int[] ids = new int[n];
+    for(int i = 0; i < n; i++){
+      ids[i] = sc.nextInt();
+    }
+
+    int k = sc.nextInt();
+
+    int survivor = 0;
+
+    for(int i = 1; i <= n; i++){
+      survivor = (survivor + k) % i;
+    }
+    System.out.println(ids[survivor]);
+  }
+  }
+
+
+  /* using circular linked list
+  
+  import java.util.*;
+
+class Node {
+    int data;
+    Node next;
+
+    Node(int data) {
+        this.data = data;
+    }
+}
+
+public class Main {
+
+    public static int josephus(int[] arr, int k) {
+
+        int n = arr.length;
+
+        Node head = new Node(arr[0]);
+        Node tail = head;
+
+        for (int i = 1; i < n; i++) {
+            tail.next = new Node(arr[i]);
+            tail = tail.next;
+        }
+
+        // Make circular
+        tail.next = head;
+
+        Node curr = head;
+        Node prev = tail;
+
+        while (curr.next != curr) {
+
+            for (int i = 1; i < k; i++) {
+                prev = curr;
+                curr = curr.next;
+            }
+
+            // delete curr
+            prev.next = curr.next;
+            curr = curr.next;
+        }
+
+        return curr.data;
+    }
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+
+        int[] arr = new int[n];
+
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
+
+        int k = sc.nextInt();
+
+        System.out.println(josephus(arr, k));
+    }
+}*/
